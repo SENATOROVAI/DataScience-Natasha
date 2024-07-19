@@ -127,8 +127,11 @@ repos:
           - types-setuptools
 
         args:
-          - --non-interactive
-          - --install-types
+          - --cache-dir=/dev/null
+          - --cache-dir=nul
+          - --no-incremental
+          # - --non-interactive
+          # - --install-types
           - --explicit-package-bases
           - --ignore-missing-imports
           - --disallow-untyped-calls
@@ -153,8 +156,11 @@ repos:
     hooks:
       - id: mypy
         args:
-          - --non-interactive
-          - --install-types
+          - --cache-dir=/dev/null
+          - --cache-dir=nul
+          - --no-incremental
+          # - --non-interactive
+          # - --install-types
           - --explicit-package-bases
           - --ignore-missing-imports
           - --disallow-untyped-calls
