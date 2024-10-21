@@ -1,0 +1,4 @@
+file = open("Users\\nataliaakisheva\\Desktop\\Python\\print_1.txt", "r")
+content = file.read()
+print(content)
+file.close
