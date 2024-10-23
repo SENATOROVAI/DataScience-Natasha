@@ -47,10 +47,20 @@ jobs:
     # - name: isort
     #   run: |
     #     isort . $(git ls-files '*.py' '*.ipynb')
-    #     nbqa isort . $(git ls-files '*.py' '*.ipynb')     
+    #     nbqa isort . $(git ls-files '*.py' '*.ipynb')
+    - name: Run isort
+      run: |
+        isort .  # Применяет изменения к импортам
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v3
+      with:
+        title: "Auto-formatting with isort"
+        body: "This pull request was automatically created to apply isort formatting."
+        base: main  # Ветка, куда вы хотите отправить PR
+        head: ${{ github.ref }}  # Ветка с изменениями
+        draft: false  # Установите true, если хотите сделать PR черновиком    
     - name: Commit changes
       run: |
-        isort --atomic .
         git config --local user.name "github-actions"
         git config --local user.email "actions@github.com"
         git add .
@@ -74,7 +84,15 @@ jobs:
         git config --local user.name "github-actions"
         git config --local user.email "actions@github.com"
         git add .
-        git commit -m "Format code with Black, isort, and pyupgrade" || echo "No changes to commit"
-        git push
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        git commit -m "Apply isort formatting" || echo "No changes to commit"
+
+    # - name: Commit changes
+    #   run: |
+    #     git config --local user.name "github-actions"
+    #     git config --local user.email "actions@github.com"
+    #     git add .
+    #     git commit -m "Format code with Black, isort, and pyupgrade" || echo "No changes to commit"
+    #     git push
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}     
+
