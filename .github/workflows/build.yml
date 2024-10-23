@@ -46,8 +46,9 @@ jobs:
         nbqa pyupgrade $(git ls-files '*.py' '*.ipynb')
     - name: isort
       run: |
-        isort $(git ls-files '*.py' '*.ipynb')
-        nbqa isort $(git ls-files '*.py' '*.ipynb')
+        isort **/*.ipynb
+        # isort $(git ls-files '*.py' '*.ipynb')
+        # nbqa isort $(git ls-files '*.py' '*.ipynb')
     - name: Commit changes
       run: |
         git config --local user.name "github-actions"
