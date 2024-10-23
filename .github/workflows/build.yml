@@ -50,7 +50,7 @@ jobs:
     #     nbqa isort . $(git ls-files '*.py' '*.ipynb')     
     - name: Commit changes
       run: |
-        isort $(git ls-files '*.py' '*.ipynb')
+        isort --atomic .
         git config --local user.name "github-actions"
         git config --local user.email "actions@github.com"
         git add .
