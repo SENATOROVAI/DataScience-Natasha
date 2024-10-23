@@ -41,6 +41,13 @@ jobs:
       run: |
         black --line-length=79 $(git ls-files '*.py' '*.ipynb')
         nbqa black --line-length=79 $(git ls-files '*.py' '*.ipynb')
+    - name: pyupgrade
+      run: |
+        nbqa pyupgrade $(git ls-files '*.py' '*.ipynb')
+    - name: isort
+      run: |
+        isort --check-only --diff $(git ls-files '*.py' '*.ipynb')
+        nbqa isort --check-only --diff $(git ls-files '*.py' '*.ipynb')     
     - name: Commit changes
       run: |
         git config --local user.name "github-actions"
@@ -61,13 +68,6 @@ jobs:
     - name: Mypy
       run: |
         nbqa mypy --exclude=^misc/ --ignore-missing-imports --explicit-package-bases --ignore-missing-imports --disallow-untyped-calls --disallow-untyped-defs --disallow-untyped-decorators --strict --extra-checks --disallow-any-decorated --disallow-any-generics --local-partial-types --pretty --force-uppercase-builtins --force-union-syntax --warn-unreachable --warn-redundant-casts --warn-return-any $(git ls-files '*.ipynb')
-    - name: isort
-      run: |
-        isort --check-only --diff $(git ls-files '*.py' '*.ipynb')
-        nbqa isort --check-only --diff $(git ls-files '*.py' '*.ipynb')
-    - name: pyupgrade
-      run: |
-        nbqa pyupgrade $(git ls-files '*.py' '*.ipynb')
     - name: Commit changes
       run: |
         git config --local user.name "github-actions"
