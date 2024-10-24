@@ -48,7 +48,7 @@ jobs:
         nbqa isort $(git ls-files '*.py' '*.ipynb')    
     - name: pyupgrade
       run: |
-        pyupgrade --py38-plus .
+        pyupgrade --py38-plus $(git ls-files '*.py' '*.ipynb') 
         nbqa pyupgrade $(git ls-files '*.py' '*.ipynb')    
     - name: Commit changes
       run: |
