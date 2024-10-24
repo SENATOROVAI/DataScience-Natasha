@@ -3,9 +3,6 @@ name: "build"
 permissions:
   contents: write  # Grant write access to the repository contents
 on:
-  push:
-    branches:
-      - "**"
   pull_request:
     branches:
       - "**"
