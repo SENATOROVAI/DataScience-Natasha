@@ -41,6 +41,15 @@ jobs:
       run: |
         black --line-length=79 $(git ls-files '*.py' '*.ipynb')
         nbqa black --line-length=79 $(git ls-files '*.py' '*.ipynb')
+    - name: isort
+      run: |
+        isort .
+        isort $(git ls-files '*.py' '*.ipynb')
+        nbqa isort $(git ls-files '*.py' '*.ipynb')    
+    - name: pyupgrade
+      run: |
+        pyupgrade --py38-plus .
+        nbqa pyupgrade $(git ls-files '*.py' '*.ipynb')    
     - name: Commit changes
       run: |
         git config --local user.name "github-actions"
@@ -62,15 +71,6 @@ jobs:
       run: |
         flake8 --ignore=E203,E501,W291,F821,F401,E402,E121 $(git ls-files '*.py' '*.ipynb')
         nbqa flake8 --ignore=E203,E501,W291,F821,F401,E402,E121 $(git ls-files '*.py' '*.ipynb')
-    - name: isort
-      run: |
-        isort .
-        isort $(git ls-files '*.py' '*.ipynb')
-        nbqa isort $(git ls-files '*.py' '*.ipynb')    
-    - name: pyupgrade
-      run: |
-        pyupgrade --py38-plus .
-        nbqa pyupgrade $(git ls-files '*.py' '*.ipynb')
     - name: ruff
       run: |
         ruff  check --fix --unsafe-fixes $(git ls-files '*.py' '*.ipynb')
