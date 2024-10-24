@@ -2,7 +2,6 @@ name: "build"
 
 permissions:
   contents: write  # Grant write access to the repository contents
-
 on:
   push:
     branches:
@@ -36,28 +35,18 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install "nbqa[toolchain]" pylint autopep8 ruff isort "black[jupyter]" mypy pyupgrade flake8-variables-names pep8-naming flake8-functions-names pandas-stubs git+https://github.com/numpy/numpy-stubs mypy-extensions types-requests types-PyYAML types-setuptools
+        pip install "nbqa[toolchain]" pylint "black[jupyter]" mypy ruff flake8-variables-names pep8-naming flake8-functions-names pandas-stubs git+https://github.com/numpy/numpy-stubs mypy-extensions types-requests types-PyYAML types-setuptools
     - name: Black
       run: |
         black --line-length=79 $(git ls-files '*.py' '*.ipynb')
         nbqa black --line-length=79 $(git ls-files '*.py' '*.ipynb')
-    - name: isort
-      run: |
-        isort .
-        isort $(git ls-files '*.py' '*.ipynb')
-        nbqa isort $(git ls-files '*.py' '*.ipynb')    
-    - name: pyupgrade
-      run: |
-        nbqa pyupgrade --py36-plus $(git ls-files '*.py' '*.ipynb') 
-        # nbqa pyupgrade $(git ls-files '*.py' '*.ipynb')    
     - name: Commit changes
       run: |
         git config --local user.name "github-actions"
         git config --local user.email "actions@github.com"
         git add .
-        git commit -m "Format code with Black, isort, and pyupgrade" || echo "No changes to commit"
+        git commit -m "ВНИМАНИЕ! КОД ОТФОРМАТИРОВАН ПО PEP8 / SENATOROV" || echo "No changes to commit"
         git push origin main --force
-
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}    
     - name: Pylint
@@ -75,4 +64,3 @@ jobs:
       run: |
         ruff  check --fix --unsafe-fixes $(git ls-files '*.py' '*.ipynb')
    
-
