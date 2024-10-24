@@ -43,7 +43,7 @@ jobs:
         nbqa black --line-length=79 $(git ls-files '*.py' '*.ipynb')
     - name: autopep
       run: |
-        autopep8 --in-place --aggressive --aggressive $(git ls-files '*.py' '*.ipynb')
+        autopep8 --in-place --aggressive $(git ls-files '*.py' '*.ipynb')
     - name: Commit changes
       run: |
         git config --local user.name "github-actions"
