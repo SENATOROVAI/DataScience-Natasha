@@ -35,5 +35,5 @@ jobs:
         pip install codespell
     - name: codespell
       run: |
-        codespell --ignore-regex='^\s*"image\/(jpeg|png|gif|bmp|tiff)":\s.*' --ignore-regex="[A-Za-z0-9+/]{100,}" --skip="*.js,*.html,*.css,*.svg",*.json,*.png,*.jpg,*.yml,*.yaml" $(git ls-files '*.py' '*.ipynb')
+        codespell --ignore-regex "^\s*'image\/(jpeg|png|gif|bmp|tiff)':\s.*" --ignore-regex "[A-Za-z0-9+/]{100,}" --skip "*.js,*.html,*.css,*.svg",*.json,*.png,*.jpg,*.yml,*.yaml" $(git ls-files '*.py' '*.ipynb')
         
