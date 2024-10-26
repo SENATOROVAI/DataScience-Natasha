@@ -30,4 +30,4 @@ jobs:
         pip install isort nbqa
     - name: isort
       run: |
-        nbqa isort --check $(git ls-files '*.py' '*.ipynb')
+        nbqa isort --check --float-to-top .
