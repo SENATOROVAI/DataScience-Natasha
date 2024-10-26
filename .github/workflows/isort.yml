@@ -21,3 +21,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: isort/isort-action@v1
+    with:
+        python-version: ${{ matrix.python-version }}
+        allow-prereleases: true
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install isort
+    - name: Mypy
+      run: |
+        isort --check . 
