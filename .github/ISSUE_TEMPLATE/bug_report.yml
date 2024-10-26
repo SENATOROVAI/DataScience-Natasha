@@ -6,7 +6,7 @@ body:
     attributes:
       value: >
         Before requesting please search [existing issues](https://t.me/c/1937296927/3602/25534).
-
+  
   - type: input
     attributes:
       label: "Repository commit"
@@ -42,11 +42,19 @@ body:
     attributes:
       label: "Expected behavior"
       description: "Describe the behavior you expect. May include images or videos."
+
     validations:
       required: true
 
   - type: textarea
     attributes:
-      label: "Actual behavior"
+      label: "Actual behavior with a description of how to reproduce the problem"
+      placeholder: |
+      ## Steps to Reproduce the Problem
+
+      1.
+      2.
+      3.
+      ...
     validations:
       required: true
